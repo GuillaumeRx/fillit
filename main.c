@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:11:50 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/07 17:20:11 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/07 17:21:27 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/includes/libft.h"
-#include <fcntl.h>
+#include "fillit.h"
 
 int	main(int ac, char **av)
 {
