@@ -6,11 +6,13 @@
 #    By: guroux <guroux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 15:00:56 by guroux            #+#    #+#              #
-#    Updated: 2018/12/21 20:39:49 by guroux           ###   ########.fr        #
+#    Updated: 2019/01/07 17:55:33 by guroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
+
+.PHONY: all fclean clean count re
 
 SRC  =  ./ft_memalloc.c 	\
 		./ft_bzero.c		\

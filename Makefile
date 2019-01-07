@@ -6,20 +6,21 @@
 #    By: guroux <guroux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/02 12:36:35 by guroux            #+#    #+#              #
-#    Updated: 2019/01/07 17:30:45 by guroux           ###   ########.fr        #
+#    Updated: 2019/01/07 17:58:03 by guroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
+.PHONY: all libft clean fclean re
+
 SRC  = ./main.c
 
 OBJECT = $(SRC:.c=.o)
 
-HEADERS = 	./includes	\
+HEADERS = 	./includes
 
-
-LIB = ./libft
+LIB = libft
 
 CC = gcc
 
@@ -34,13 +35,13 @@ YELLOW = \033[1;33m
 OKGREEN = $(YELLOW)\t===== $(GREEN)[OK]$(WHITE)
 KORED = $(YELLOW)\t===== $(RED)[error]$(WHITE)
 
-$(NAME): libft
-	@$(CC) $(FLAGS) -I $(LIB)/includes -c $(SRC) -I $(HEADERS) && echo "- $(BLUE)Objects Creation$(OKGREEN)" || (echo "- $(BLUE)Objects Creation$(KORED)" && false)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECT) && echo "- $(BLUE)Compilation$(OKGREEN)" || (echo "- $(BLUE)Compilation$(KORED)" && false)
+$(NAME): $(LIB)
+	@$(CC) $(FLAGS) -I libft/includes -c $(SRC) -I $(HEADERS) && echo "- $(BLUE)Objects Creation$(OKGREEN)" || (echo "- $(BLUE)Objects Creation$(KORED)" && false)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJECT) -I libft/includes -L libft/ -lft && echo "- $(BLUE)Compilation$(OKGREEN)" || (echo "- $(BLUE)Compilation$(KORED)" && false)
 
 
-libft:
-	$(MAKE) -C $(LIB)
+$(LIB):
+	@$(MAKE) -C $(LIB)
 
 
 all: $(NAME)
