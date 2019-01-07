@@ -6,7 +6,7 @@
 #    By: guroux <guroux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/02 12:36:35 by guroux            #+#    #+#              #
-#    Updated: 2019/01/07 13:40:36 by guroux           ###   ########.fr        #
+#    Updated: 2019/01/07 17:30:45 by guroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRC  = ./main.c
 OBJECT = $(SRC:.c=.o)
 
 HEADERS = 	./includes	\
-			./get_next_line/get_next_line.h
 
 
 LIB = ./libft
