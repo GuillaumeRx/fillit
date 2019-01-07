@@ -6,13 +6,14 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/02 12:39:25 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/07 13:46:47 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
-#include "libft.h"
+#include <fcntl.h>
+#include "get_next_line.h"
 
 #endif
