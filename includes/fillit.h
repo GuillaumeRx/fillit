@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/07 18:01:06 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/08 15:48:44 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,10 @@
 
 #include <fcntl.h>
 #include "get_next_line.h"
+
+typedef struct		s_piece {
+	char			board[5][5];
+	struct s_piece	*next;
+}					t_piece;
 
 #endif
