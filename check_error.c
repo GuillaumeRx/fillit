@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/08 17:33:33 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:41:34 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ static int	read_a_piece(int fd, t_piece *pieces, char *line)
 	{ /*gros pb a gerer --> gnl ne peut pas renvoyer 0 car il ne doit ici lire
 		qu un tetrimino or le fichier en contient plusieurs --> a corriger 
 		demain*/
-		if ((ret = get_next_line(fd, &line)) == -1)
-			return (0);
-		else if (ret == 0)
-			return (1);
 		j = 0;
 		while (line[j] == '.' || line[j] == '#')
 		{
@@ -60,7 +56,13 @@ int			check_error(int fd)
 	max_piece = 0;
 	while (max_piece < 26)
 	{
-		if (read_a_piece(fd, *pieces, line) == 0)
+		if ((ret = get_next_line(fd, &line)) == -1)
+			return (0);
+		else if (ret == 0)
+			return (1);
+		/*gros pb a regler ici donc*/
+		ret = read_a_piece(fd, pieces, line);
+		if (ret == 0)
 			return (0);
 		max_piece++;
 	}
