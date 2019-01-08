@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 12:49:41 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/07 13:46:16 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/08 11:36:23 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-# define BUFF_SIZE 32
+# define BUFF_SIZE 6
 
 int				get_next_line(const int fd, char **line);
 
