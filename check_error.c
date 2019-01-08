@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/08 13:23:28 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/08 15:00:27 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 int	check_error(int fd)
 {
 	int		ret;
-	char	*buf[BUFF_SIZE];
 	t_error	*cur;
-	char	*line['\0'];
+	char	*line;
 	int		ret;
 
 	cur.i = 0;
