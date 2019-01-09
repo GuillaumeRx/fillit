@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/09 16:44:39 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/09 17:32:17 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	part_of_list(t_piece *pieces);
 int	read_pieces(int fd, char *line, t_piece *pieces);
 int	check_error(int fd);
 int	check_each_error(void);
+int	check_block_number(t_piece *pieces);
+int	check_positions(int i, int j, t_piece *pieces);
 
 typedef struct		s_piece {
 	char			board[5][5];
