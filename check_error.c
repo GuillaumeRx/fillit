@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/08 17:41:34 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:28:34 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,49 @@
 
 #include "fillit.h"
 
-static int	read_a_piece(int fd, t_piece *pieces, char *line)
+int	check_each_error(int fd, char *line, t_piece *pieces)
 {
+	if (!(part_of_list(pieces)))
+		return (0);
+	if (!(ret = read_pieces(fd, line, pieces)))
+		return (0);
+	if (!(v_or_invalid_piece(pieces)))
+		return (0);
+	return (1);
+}
+
+/*lire ligne par ligne les pieces du fichier et les verifier en meme temps*/
+
+int	read_pieces(int fd, char *line, t_piece *pieces)
+{
+	int	ret;
 	int	i;
 	int	j;
-	int	ret;
 
 	i = 0;
-	if (pieces.next)
-		pieces.next = pieces;
-	else
-		pieces.next = NULL;
 	while (i < 4)
-	{ /*gros pb a gerer --> gnl ne peut pas renvoyer 0 car il ne doit ici lire
-		qu un tetrimino or le fichier en contient plusieurs --> a corriger 
-		demain*/
+	{
+		if ((ret = get_next_line(fd, &line)) < 0)
+			return (0);
+		if ((j = ft_strlen(line)) != 5)
+			return (0);
+		if (!(valid_or_invalid_(line)))
+			return (0);
 		j = 0;
-		while (line[j] == '.' || line[j] == '#')
+		while (j < 5)
 		{
 			board[i][j] = line[j];
 			j++;
 		}
-		if (j != 4 && line[j] != '\n')
-			return (0);
-		board[i][j] = '\0';
 		i++;
 	}
+	return (1);
 }
 
-int			check_error(int fd)
+/*remonter l'ensemble des erreurs verifiees et s'assurer qu'on a un 
+ * nombre valide de tetrominos*/
+
+int	check_error(int fd)
 {
 	t_piece	*pieces;
 	int		ret;
@@ -51,18 +65,19 @@ int			check_error(int fd)
 
 	if (fd < 0)
 		return (0);
-	if (!(*pieces = (t_piece *)malloc(sizeof(t_piece))))
-		return (0);
 	max_piece = 0;
 	while (max_piece < 26)
 	{
-		if ((ret = get_next_line(fd, &line)) == -1)
+		if (check_each_error(fd, l ine, pieces))
+			return (0);
+		if ((ret = get_next_line(fd, &line) < 0))
 			return (0);
 		else if (ret == 0)
+		{
+			free(pieces);
 			return (1);
-		/*gros pb a regler ici donc*/
-		ret = read_a_piece(fd, pieces, line);
-		if (ret == 0)
+		}
+		if (!(valid_or_invalid(line)))
 			return (0);
 		max_piece++;
 	}
