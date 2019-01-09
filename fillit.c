@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:52:30 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/09 20:21:13 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/09 20:25:52 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int				fillit(t_piece *actual, char **board, int size)
 			if (piece_is_placable(actual->pos, board, pos, size))
 			{
 					write_piece(actual->pos, board, letter);
-					if (is_valid(actual->next, board, size) || actual->next == NULL)
+					if (fillit(actual->next, board, size) || actual->next == NULL)
 						return (1);
 					else
 						delete_piece(actual->pos, board, pos);
