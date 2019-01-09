@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/08 15:53:36 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/09 16:41:44 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,11 @@ typedef struct		s_piece {
 	char			board[5][5];
 	struct s_piece	*next;
 }					t_piece;
+
+typedef struct		s_block{
+	int				x;
+	int				y;
+	struct s_block	*next;
+}					t_block;
 
 #endif
