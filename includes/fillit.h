@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/09 19:54:46 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/09 20:21:20 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,16 @@ int	check_error(int fd);
 int	check_each_error(void);
 
 /* fillit.c */
+int		fillit(t_piece *actual, char **board, int size);
 
-int		get_size(t_piece *start);
-int		piece_is_placable(t_block *block, char **board, int pos[2], int size);
-int		is_valid(t_piece **start, char **board);
+/* board.c */
+void	write_piece(t_block *block,char **board, int pos[2], char letter);
+void	delete_piece(t_block *block,char **board, int pos[2]);
+char	**init_board(t_piece **start);
+
+/* others.c */
+int		get_size(t_piece **start);
+
 
 typedef struct		s_piece {
 	char			board[5][5];

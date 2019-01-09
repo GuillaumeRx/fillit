@@ -6,13 +6,13 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/09 20:11:00 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/09 20:19:27 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		write_piece(t_block *block,char **board, int pos[2], char letter)
+void	write_piece(t_block *block,char **board, int pos[2], char letter)
 {
 	pos[0] =+ block->x;
 	pos[1] =+ block->y;

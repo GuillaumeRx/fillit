@@ -6,13 +6,13 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:52:30 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/09 20:13:41 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/09 20:21:13 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			piece_is_placable(t_block *block, char **board, int pos[2], int size)
+static int		piece_is_placable(t_block *block, char **board, int pos[2], int size)
 {
 	int x;
 	int y;
@@ -29,7 +29,7 @@ int			piece_is_placable(t_block *block, char **board, int pos[2], int size)
 		return (0);
 }
 
-int			fillit(t_piece *actual, char **board, int size)
+int				fillit(t_piece *actual, char **board, int size)
 {
 	int		size;
 	int		pos[2];
