@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/09 20:19:27 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/10 16:16:03 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ void		delete_piece(t_block *block,char **board, int pos[2])
 		delete_piece(block->next, board, pos);
 }
 
-/* 	Initialization of the final board using a simple algorithm :
-	board_size = sqrt( number of tetriminos * number of blocks of a tetriminos (4) )
-	Than malloc a double char tab wich is used to represent the board.
-*/
 char		**init_board(t_piece **start)
 {
 	char	**board;
@@ -59,4 +55,13 @@ char		**init_board(t_piece **start)
 	}
 	board[size] = NULL;
 	return(board);
+}
+
+void		display_board(char **board)
+{
+	int i;
+
+	i = 0;
+	while (board[i++] != NULL)
+		ft_putendl(board[i]);
 }
