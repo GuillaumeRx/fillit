@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/10 16:17:02 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/10 20:35:43 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,26 @@
 #include <fcntl.h>
 #include "get_next_line.h"
 
-int	valid_or_invalid(char *line);
-int	v_or_invalid_piece(t_piece *pieces);
-int	part_of_list(t_piece *pieces);
-int	read_pieces(int fd, char *line, t_piece *pieces);
-int	check_error(int fd);
-int	check_each_error(void);
-int	check_block_number(t_piece *pieces);
-int	check_positions(int i, int j, t_piece *pieces);
+typedef struct		s_piece {
+	char			board[5][5];
+	struct s_block	*pos;
+	struct s_piece	*next;
+}					t_piece;
+
+typedef struct		s_block{
+	int				x;
+	int				y;
+	struct s_block	*next;
+}					t_block;
+
+// int	valid_or_invalid(char *line);
+// int	v_or_invalid_piece(t_piece *pieces);
+// int	part_of_list(t_piece *pieces);
+// int	read_pieces(int fd, char *line, t_piece *pieces);
+// int	check_error(int fd);
+// int	check_each_error(void);
+// int	check_block_number(t_piece *pieces);
+// int	check_positions(int i, int j, t_piece *pieces);
 
 /* fillit.c */
 int		fillit(t_piece *actual, char **board, int size, char letter);
@@ -39,17 +51,5 @@ void	display_board(char **board);
 /* others.c */
 int		get_size(t_piece **start);
 
-
-typedef struct		s_piece {
-	char			board[5][5];
-	struct s_block	*pos;
-	struct s_piece	*next;
-}					t_piece;
-
-typedef struct		s_block{
-	int				x;
-	int				y;
-	struct s_block	*next;
-}					t_block;
 
 #endif

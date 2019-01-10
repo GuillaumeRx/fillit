@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/10 16:16:03 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/10 21:01:06 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	write_piece(t_block *block,char **board, int pos[2], char letter)
 {
-	pos[0] =+ block->x;
-	pos[1] =+ block->y;
+	pos[0] = pos[0] + block->x;
+	pos[1] = pos[1] + block->y;
 	board[pos[1]][pos[0]] = letter;
 	if (block->next != NULL)
 		write_piece(block->next, board, pos, letter);
@@ -23,8 +23,8 @@ void	write_piece(t_block *block,char **board, int pos[2], char letter)
 
 void		delete_piece(t_block *block,char **board, int pos[2])
 {
-	pos[0] =+ block->x;
-	pos[1] =+ block->y;
+	pos[0] = pos[0] + block->x;
+	pos[1] = pos[1] + block->y;
 	board[pos[1]][pos[0]] = '.';
 	if (block->next != NULL)
 		delete_piece(block->next, board, pos);
@@ -38,7 +38,7 @@ char		**init_board(t_piece **start)
 	int		j;
 
 	i = 0;
-	size = get_size(*start);
+	size = get_size(start);
 	if (!(board = (char **)malloc(sizeof(char *) * size + 1)))
 		return (NULL);
 	while (i++ < size)

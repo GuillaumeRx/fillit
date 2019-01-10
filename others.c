@@ -6,13 +6,13 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:12:23 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/09 20:13:28 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/10 21:02:12 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static		ft_sqrt(int nb)
+static int		ft_sqrt(int nb)
 {
 	int i;
 
@@ -34,6 +34,7 @@ int			get_size(t_piece **start)
 	t_piece *tmp;
 
 	tmp = *start;
+	piece_nbr = 0;
 	while (tmp)
 	{
 		tmp = tmp->next;
