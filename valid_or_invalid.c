@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 15:37:12 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/09 17:32:26 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/10 17:34:29 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*verifier le nombre de # dans un tableau*/
 
-int	check_block_number(t_piece *pieces)
+int	check_block_number(char board[5][5])
 {
 	int	ret;
 	int	i;
@@ -27,10 +27,11 @@ int	check_block_number(t_piece *pieces)
 		j = 0;
 		while (j < 5)
 		{
-			while (pieces.board[i][j] == '.')
+			while (board[i][j] == '.')
 				j++;
-			if (pieces.board[i][j] == '#')
+			if (board[i][j] == '#')
 				ret++;
+			j++;
 		}
 		i++;
 	}
@@ -41,18 +42,18 @@ int	check_block_number(t_piece *pieces)
 
 /*vertifier le nombre de contacts entre les carres d'un tetromino*/
 
-int	check_positions(int i, int j, t_piece *pieces)
+int	check_positions(int i, int j, char board[5][5])
 {
 	int	ret;
 
 	ret = 0;
-	if (pieces.board[i][j - 1] == '#')
+	if (board[i][j - 1] == '#')
 		ret++;
-	if (pieces.board[i - 1][j] == '#')
+	if (board[i - 1][j] == '#')
 		ret++;
-	if (pieces.board[i + 1][j] == '#')
+	if (board[i + 1][j] == '#')
 		ret++;
-	if (pieces.board[i][j + 1] == '#')
+	if (board[i][j + 1] == '#')
 		ret++;
 	return (ret);
 }
@@ -64,17 +65,17 @@ int	valid_or_invalid(char *line)
 	int i;
 
 	i = 0;
-	if (ft_strlen(line) == 5)
+	if (ft_strlen(line) == 4)
 	{
-		while (i < 5 && (line[i] == '.' ||  line[i] == '#'))
+		while (i < 4 && (line[i] == '.' ||  line[i] == '#'))
 			i++;
-		if (i != 5)
+		if (i != 4)
 			return (0);
 		if (line[i] != '\0')
 			return (0);
 		return (1);
 	}
-	else if (ft_strlen(line) == 2)
+	else if (ft_strlen(line) == 1)
 	{
 		if (line[0] != '\n')
 			return (0);
@@ -86,13 +87,13 @@ int	valid_or_invalid(char *line)
 /*verifier que l'agencement des caracteres lus correcpond bien a celui d'un
  * tetromino valide*/
 
-int	v_or_invalid_piece(t_piece *pieces)
+int	v_or_invalid_piece(char board[5][5])
 {
 	int		i;
 	int		j;
 	int		ret;
 
-	if (!(check_block_number(pieces)))
+	if (!(check_block_number(board[5][5])))
 		return (0);
 	i = 0;
 	ret = 0;
@@ -101,10 +102,11 @@ int	v_or_invalid_piece(t_piece *pieces)
 		j = 0;
 		while (j < 5)
 		{
-			while (pieces.board[i][j] == '.')
+			while (board[i][j] == '.')
 				j++;
-			if (pieces.board[i][j] == '#')
-				ret = ret + check_positions(i, j, pieces);
+			if (board[i][j] == '#')
+				ret = ret + check_positions(i, j, board[5][5]);
+			j++;
 		}
 		i++;
 	}
