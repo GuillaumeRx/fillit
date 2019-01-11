@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/10 21:01:06 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/11 02:17:17 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,26 @@ char		**init_board(t_piece **start)
 	int		j;
 
 	i = 0;
-	size = get_size(start);
+	size = get_size(*start);
 	if (!(board = (char **)malloc(sizeof(char *) * size + 1)))
 		return (NULL);
-	while (i++ < size)
+	while (i < size)
 	{
+		printf("first dim malloc\n");
 		if (!(board[i] = (char *)malloc(sizeof(char) * size + 1)))
 		{
 			free(board);
 			return (NULL);
 		}
 		j = 0;
-		while (j++ < size)
+		while (j < size)
+		{
+			printf("second dim malloc\n");
 			board[i][j] = '.';
+			j++;
+		}
 		board[i][j] = '\0';
+		i++;
 	}
 	board[size] = NULL;
 	return(board);
@@ -62,6 +68,9 @@ void		display_board(char **board)
 	int i;
 
 	i = 0;
-	while (board[i++] != NULL)
+	while (board[i] != 0)
+	{
 		ft_putendl(board[i]);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/10 20:35:43 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/11 01:59:23 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define USAGE "usage : ./fillit file"
 
 #include <fcntl.h>
+#include <stdio.h>
 #include "get_next_line.h"
 
 typedef struct		s_piece {
@@ -49,7 +50,7 @@ char	**init_board(t_piece **start);
 void	display_board(char **board);
 
 /* others.c */
-int		get_size(t_piece **start);
+int		get_size(t_piece *head);
 
 
 #endif
