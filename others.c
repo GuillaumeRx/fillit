@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:12:23 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/11 02:11:23 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/12 02:26:36 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int get_size(t_piece *head)
 	count = 0; 
     t_piece *current = head; 
     while (current != NULL) 
-    { 
-        count++; 
-        current = current->next; 
+    {  
+        current = current->next;
+		count++; 
     }
     return (ft_sqrt(count * 4));
 } 

@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/11 01:59:23 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/12 02:56:43 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ typedef struct		s_block{
 // int	check_positions(int i, int j, t_piece *pieces);
 
 /* fillit.c */
+int		piece_is_placable(t_block *block, char **board, int x, int y, int size);
 int		fillit(t_piece *actual, char **board, int size, char letter);
 
 /* board.c */
-void	write_piece(t_block *block,char **board, int pos[2], char letter);
-void	delete_piece(t_block *block,char **board, int pos[2]);
-char	**init_board(t_piece **start);
+void	write_piece(t_block *block, char **board, int x, int y, char letter);
+void	delete_piece(t_block *block, char **board, int x, int y);
+char	**init_board(int size);
 void	display_board(char **board);
 
 /* others.c */

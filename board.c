@@ -6,44 +6,41 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/11 02:17:17 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/12 02:56:48 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	write_piece(t_block *block,char **board, int pos[2], char letter)
+void	write_piece(t_block *block,char **board, int x, int y, char letter)
 {
-	pos[0] = pos[0] + block->x;
-	pos[1] = pos[1] + block->y;
-	board[pos[1]][pos[0]] = letter;
+	x = x + block->x;
+	y = y + block->y;
+	board[y][x] = letter;
 	if (block->next != NULL)
-		write_piece(block->next, board, pos, letter);
+		write_piece(block->next, board, x, y, letter);
 }
 
-void		delete_piece(t_block *block,char **board, int pos[2])
+void		delete_piece(t_block *block,char **board, int x, int y)
 {
-	pos[0] = pos[0] + block->x;
-	pos[1] = pos[1] + block->y;
-	board[pos[1]][pos[0]] = '.';
+	x = x + block->x;
+	y = y + block->y;
+	board[y][x] = '.';
 	if (block->next != NULL)
-		delete_piece(block->next, board, pos);
+		delete_piece(block->next, board, x, y);
 }
 
-char		**init_board(t_piece **start)
+char		**init_board(int size)
 {
 	char	**board;
-	int		size;
 	int		i;
 	int		j;
 
 	i = 0;
-	size = get_size(*start);
 	if (!(board = (char **)malloc(sizeof(char *) * size + 1)))
 		return (NULL);
 	while (i < size)
 	{
-		printf("first dim malloc\n");
 		if (!(board[i] = (char *)malloc(sizeof(char) * size + 1)))
 		{
 			free(board);
@@ -52,7 +49,6 @@ char		**init_board(t_piece **start)
 		j = 0;
 		while (j < size)
 		{
-			printf("second dim malloc\n");
 			board[i][j] = '.';
 			j++;
 		}

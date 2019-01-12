@@ -6,13 +6,13 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 19:45:25 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/11 02:43:52 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/12 03:05:22 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	create_block_list(t_block **block, int i)
+t_block 	*create_block_list(int i)
 {
 	t_block *actual;
 
@@ -23,7 +23,7 @@ void	create_block_list(t_block **block, int i)
 		(*actual).x = 0;
 		(*actual).y = 0;
 		printf("actual y :%d\n", actual->y);
-		create_block_list(&(actual->next), i = i + 1);
+		actual->next = create_block_list(i = i + 1);
 	}
 	else if (i < 3)
 	{
@@ -31,17 +31,28 @@ void	create_block_list(t_block **block, int i)
 		(*actual).x = 0;
 		(*actual).y = 1;
 		printf("actual y :%d\n", actual->y);
-		create_block_list(&((*actual).next), i = i + 1);
+		actual->next = create_block_list(i = i + 1);
 	}
 	else if (i == 3)
 	{
 		printf("last block created\n");
-		*block = actual;
-		(*actual).x = 0;
-		(*actual).y = 1;
+		(*actual).x = -1;
+		(*actual).y = 0;
 		printf("actual y :%d\n", actual->y);
-		(*block)->next = NULL;
+		actual->next = NULL;
 	}
+	return(actual);
+}
+
+t_block	*create_block()
+{
+	t_block *block;
+
+	block = (t_block *)malloc(sizeof(t_block));
+	block->x = 0;
+	block->y = 0;
+	block->next = NULL;
+	return (block);
 }
 
 void	lstadd(t_piece **alst)
@@ -50,29 +61,25 @@ void	lstadd(t_piece **alst)
 
 	printf("tetrimino created\n");
 	new = (t_piece *)malloc(sizeof(t_piece));
-	create_block_list(&(new->pos), 0);
+	new->pos = create_block_list(0);
 	if (alst)
 	{
-		new->next = *alst;
-		*alst = new;
+	new->next = *alst;
+	*alst = new;
 	}
-}
+	else 
+	{
+		new->next = NULL;
+		*alst = new;
 
-t_piece		*lstnew()
-{
-	t_piece	*list;
-
-	if (!(list = (t_piece *)malloc(sizeof(t_piece))))
-		return (NULL); 
-	list->next = NULL;
-	return (list);
+	}
 }
 
 void	create_piece_list(t_piece **list)
 {
 	int		i;
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 	{
 		lstadd(list);
 		printf("Tetrimino number %d created\n", i);
@@ -85,14 +92,21 @@ int		main(void)
 	t_piece *start;
 	char	**board;
 	int		size;
+	int		pos[2];
 
-	start = lstnew();
+	pos[0] = 0;
+	pos[1] = 0;
 	create_piece_list(&start);
 	printf("Done with tertriminos creation\n");
 	size = get_size(start);
 	printf("size of board is %d\n", size);
-	board = init_board(&start);
-	printf("Done with board creation\n");
-	fillit(start, board, size, 'A');
+	board = init_board(size);
+	printf("Done with board creation\n--------------------------------------------------------------------------------------\n");
+	while (!(fillit(start, board, size, 'A')))
+	{
+		free(board);
+		size++;
+		board = init_board(size);
+	}
 	display_board(board);
 }

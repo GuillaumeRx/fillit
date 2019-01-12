@@ -6,25 +6,23 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:52:30 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/11 02:55:31 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/12 02:47:02 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int		piece_is_placable(t_block *block, char **board, int pos[2], int size)
+int		piece_is_placable(t_block *block, char **board, int x, int y, int size)
 {
-	pos[0] = pos[0] + block->x;
-	pos[1] = pos[1] + block->x;
-	printf("edited position\n");
-	if (pos[0] >= size || pos[1] >= size)
+	x += block->x;
+	y += block->y;
+	if (y >= size || x >= size)
 		return (0);
-	if (board[pos[1]][pos[0]] == '.')
+	if (board[y][x] == '.')
 	{
-		printf("placing a block\n");
 		if(block->next == NULL)
 			return (1);
-		return (piece_is_placable(block->next, board, pos, size));
+		return (piece_is_placable(block->next, board, x, y, size));
 	}
 	else
 		return (0);
@@ -32,27 +30,34 @@ static int		piece_is_placable(t_block *block, char **board, int pos[2], int size
 
 int				fillit(t_piece *actual, char **board, int size, char letter)
 {
-	int		pos[2];
+	int		x;
+	int		y;
 
-	pos[0] = 0;
-	pos[1] = 0;
-	while (pos[1] < size)
+	x = 0;
+	y = 0;
+	while (y < size)
 	{
-		printf("im on %d y\n", pos[1]);
-		while (pos[0] < size)
+		printf("im on %d y\n", y);
+		while (x < size)
 		{
-			printf("im on %d x\n", pos[0]);
-			if (piece_is_placable(actual->pos, board, pos, size))
+			printf("im on %d x\n", x);
+			if (piece_is_placable(actual->pos, board, x, y, size))
 			{
-					write_piece(actual->pos, board, pos, letter);
-					if (fillit(actual->next, board, size, letter++) || actual->next == NULL)
+					printf("piece is placable\n");
+					write_piece(actual->pos, board, x, y, letter);
+					printf("piece placed\n----------------------------\n");
+					if (actual->next == NULL)
+						return (1);
+					else if (fillit(actual->next, board, size, letter = letter + 1))
 						return (1);
 					else
-						delete_piece(actual->pos, board, pos);
+						delete_piece(actual->pos, board, x, y);
 			}
-			pos[0]++;
+			printf("piece is not placable\n");
+			x++;
 		}
-		pos[1]++;
+		x = 0;
+		y++;
 	}
 	return (0);
 }
