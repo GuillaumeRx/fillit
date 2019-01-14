@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/10 17:34:22 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/14 14:12:35 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ int	check_error(int fd, t_piece **pieces)
 
 	cur = *pieces;
 	line = "";
-	if (fd < 0)
-		return (0);
 	max_piece = 0;
 	while (max_piece < 26)
 	{
