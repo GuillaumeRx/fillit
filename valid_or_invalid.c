@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 15:37:12 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/10 17:34:29 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:46:55 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	v_or_invalid_piece(char board[5][5])
 	int		j;
 	int		ret;
 
-	if (!(check_block_number(board[5][5])))
+	if (!(check_block_number(board)))
 		return (0);
 	i = 0;
 	ret = 0;
@@ -105,7 +105,7 @@ int	v_or_invalid_piece(char board[5][5])
 			while (board[i][j] == '.')
 				j++;
 			if (board[i][j] == '#')
-				ret = ret + check_positions(i, j, board[5][5]);
+				ret = ret + check_positions(i, j, board);
 			j++;
 		}
 		i++;

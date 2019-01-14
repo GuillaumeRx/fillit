@@ -6,7 +6,7 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/14 14:12:35 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/14 16:45:56 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	check_each_error(int fd, t_piece **pieces)
 {
 	if (!(part_of_list(pieces)))
 		return (0);
-	if (!(ret = read_pieces(fd, *pieces->board)))
+	if (!(ret = read_pieces(fd, (*pieces)->board)))
 		return (0);
-	if (!(v_or_invalid_piece(*pieces->board)))
+	if (!(v_or_invalid_piece((*pieces)->board)))
 		return (0);
 	return (1);
 }
@@ -69,7 +69,7 @@ int	check_error(int fd, t_piece **pieces)
 	max_piece = 0;
 	while (max_piece < 26)
 	{
-		if (check_each_error(fd, *cur))
+		if (!(check_each_error(fd, *cur)))
 			return (0);
 		if ((ret = get_next_line(fd, &line) < 0))
 			return (0);
@@ -82,7 +82,7 @@ int	check_error(int fd, t_piece **pieces)
 		if (!(valid_or_invalid(line)))
 			return (0);
 		max_piece++;
-		cur = *pieces->next;
+		cur = (*pieces)->next;
 	}
 	return (0);
 }
