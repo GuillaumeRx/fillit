@@ -6,13 +6,13 @@
 #    By: guroux <guroux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/02 12:36:35 by guroux            #+#    #+#              #
-#    Updated: 2019/01/18 18:45:08 by guroux           ###   ########.fr        #
+#    Updated: 2019/01/18 21:54:48 by guroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
-
 .PHONY: all libft clean fclean re
+
+NAME = fillit
 
 SRC  =	./main.c		\
 		./board.c 		\
@@ -26,7 +26,8 @@ SRC  =	./main.c		\
 
 OBJECT = $(SRC:.c=.o)
 
-HEADERS = 	./includes
+HEADERS = 	./get_next_line.h	\
+			./fillit.h			\
 
 LIB = libft
 
@@ -45,7 +46,7 @@ KORED = $(YELLOW)\t===== $(RED)[error]$(WHITE)
 
 $(NAME): $(LIB)
 	@$(CC) $(FLAGS) -I libft/includes -c $(SRC) -I $(HEADERS) && echo "- $(BLUE)Objects Creation$(OKGREEN)" || (echo "- $(BLUE)Objects Creation$(KORED)" && false)
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJECT) -I libft/includes -L libft/ -lft && echo "- $(BLUE)Compilation$(OKGREEN)" || (echo "- $(BLUE)Compilation$(KORED)" && false)
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJECT) -L libft/ -lft && echo "- $(BLUE)Compilation$(OKGREEN)" || (echo "- $(BLUE)Compilation$(KORED)" && false)
 
 
 $(LIB):
@@ -57,9 +58,11 @@ all: $(NAME)
 clean:
 	@rm -rf $(OBJECT)
 	@echo "- $(BLUE)Deleted objects$(OKGREEN)"
+	@$(MAKE) clean -C $(LIB)
 
 fclean: clean
 	@rm -rf $(NAME)
 	@echo "- $(BLUE)Deleted exe$(OKGREEN)"
+	@$(MAKE) fclean -C $(LIB)
 
 re: fclean all

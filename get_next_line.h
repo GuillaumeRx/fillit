@@ -6,14 +6,14 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 12:49:41 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/14 14:32:54 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/18 21:49:56 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "libft.h"
+# include "libft/libft.h"
 
 # define BUFF_SIZE 6
 

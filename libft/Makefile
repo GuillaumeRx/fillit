@@ -6,13 +6,13 @@
 #    By: guroux <guroux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/08 15:00:56 by guroux            #+#    #+#              #
-#    Updated: 2019/01/07 17:55:33 by guroux           ###   ########.fr        #
+#    Updated: 2019/01/18 21:53:26 by guroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+.PHONY: all count clean fclean re
 
-.PHONY: all fclean clean count re
+NAME = libft.a
 
 SRC  =  ./ft_memalloc.c 	\
 		./ft_bzero.c		\
@@ -80,7 +80,7 @@ SRC  =  ./ft_memalloc.c 	\
 
 OBJECT = $(SRC:.c=.o)
 
-HEADERS = ./includes
+HEADERS = ./libft.h
 
 CC = gcc
 
@@ -96,7 +96,7 @@ OKGREEN = $(YELLOW)\t===== $(GREEN)[OK]$(WHITE)
 KORED = $(YELLOW)\t===== $(RED)[error]$(WHITE)
 
 $(NAME): $(SRC) $(HEADERS) Makefile
-	@$(CC) -c $(FLAGS) -I$(HEADERS) $(SRC) && echo "- $(BLUE)Compilation$(OKGREEN)" || (echo "- $(BLUE)Compile$(KORED)" && false)
+	@$(CC) -c $(FLAGS) $(HEADERS) $(SRC) && echo "- $(BLUE)Compilation$(OKGREEN)" || (echo "- $(BLUE)Compile$(KORED)" && false)
 	@ar rc $(NAME) $(OBJECT) && echo "- $(BLUE)Create lib$(OKGREEN)" || (echo "- $(BLUE)Create lib$(KORED)" && false)
 	@ranlib $(NAME) && echo "- $(BLUE)Index lib$(OKGREEN)" || (echo "- $(BLUE)Index lib$(KORED)" && false)
 
