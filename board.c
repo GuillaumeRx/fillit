@@ -6,13 +6,13 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 20:05:11 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:26:02 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		write_piece(t_block *block,char **board, int pos[2], char letter)
+void		write_piece(t_block *block, char **board, int pos[2], char letter)
 {
 	int pos_next[2];
 	int x;
@@ -27,13 +27,19 @@ void		write_piece(t_block *block,char **board, int pos[2], char letter)
 		write_piece(block->next, board, pos_next, letter);
 }
 
-void		delete_piece(t_block *block,char **board, int x, int y)
+void		delete_piece(t_block *block, char **board, int pos[2])
 {
-	x = x + block->x;
-	y = y + block->y;
+	int x;
+	int y;
+	int pos_next[2];
+
+	x = pos[0] + block->x;
+	y = pos[1] + block->y;
 	board[y][x] = '.';
+	pos_next[0] = x;
+	pos_next[1] = y;
 	if (block->next != NULL)
-		delete_piece(block->next, board, x, y);
+		delete_piece(block->next, board, pos_next);
 }
 
 char		**init_board(int size)
@@ -62,7 +68,7 @@ char		**init_board(int size)
 		i++;
 	}
 	board[size] = NULL;
-	return(board);
+	return (board);
 }
 
 void		display_board(char **board)

@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 17:31:03 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 18:31:45 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:26:29 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	fd_other_block(char board[5][5], int i, int j, t_block **cur)
 
 	i_bis = i;
 	j_bis = j - 1;
-	while(i < 4)
+	while (i < 4)
 	{
 		while (j < 4)
 		{

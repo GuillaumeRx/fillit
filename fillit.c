@@ -6,13 +6,13 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:52:30 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 20:04:13 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:33:21 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		piece_is_placable(t_block *block, char **board, char pos[2], int size)
+int		piece_is_placable(t_block *block, char **board, int pos[2], int size)
 {
 	int x;
 	int y;
@@ -24,7 +24,7 @@ int		piece_is_placable(t_block *block, char **board, char pos[2], int size)
 		return (0);
 	if (board[y][x] == '.')
 	{
-		if(block->next == NULL)
+		if (block->next == NULL)
 			return (1);
 		pos_next[0] = x;
 		pos_next[1] = y;
@@ -34,7 +34,7 @@ int		piece_is_placable(t_block *block, char **board, char pos[2], int size)
 		return (0);
 }
 
-int				backtrack(t_piece *actual, char **board, int size, char letter)
+int		backtrack(t_piece *actual, char **board, int size, char letter)
 {
 	int		pos[2];
 
@@ -47,13 +47,13 @@ int				backtrack(t_piece *actual, char **board, int size, char letter)
 		{
 			if (piece_is_placable(actual->pos, board, pos, size))
 			{
-					write_piece(actual->pos, board, pos, letter);
-					if (actual->next == NULL)
-						return (1);
-					else if (backtrack(actual->next, board, size, letter))
-						return (1);
-					else
-						delete_piece(actual->pos, board, pos);
+				write_piece(actual->pos, board, pos, letter);
+				if (actual->next == NULL)
+					return (1);
+				else if (backtrack(actual->next, board, size, letter))
+					return (1);
+				else
+					delete_piece(actual->pos, board, pos);
 			}
 			pos[0]++;
 		}

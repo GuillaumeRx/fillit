@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:11:50 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 18:48:36 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:39:07 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	main(int ac, char **av)
 {
-	t_piece	*pieces;
-	int fd;
+	t_piece		*pieces;
+	int			fd;
 
 	if (ac != 2)
 		ft_putendl(USAGE);
 	else
 	{
 		fd = open(av[1], O_RDONLY);
-		if(!(fillit(fd, &pieces)))
+		if (!(fillit(fd, &pieces)))
 			ft_putendl("error");
 		close(fd);
 	}

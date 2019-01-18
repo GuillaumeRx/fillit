@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 19:41:01 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:27:09 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,8 @@ int	read_pieces(int fd, char board[5][5])
 		if (!(valid_or_invalid(line)))
 			return (0);
 		j = 0;
-		while (j < 4)
-		{
+		while (j++ < 4)
 			board[i][j] = line[j];
-			j++;
-		}
 		board[i][j] = '\0';
 		i++;
 		if (ret == 1)

@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:12:23 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/12 02:26:36 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 21:38:19 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@ static int		ft_sqrt(int nb)
 	return (0);
 }
 
-int get_size(t_piece *head) 
-{ 
-    int count;
-	
-	count = 0; 
-    t_piece *current = head; 
-    while (current != NULL) 
-    {  
-        current = current->next;
-		count++; 
-    }
-    return (ft_sqrt(count * 4));
-} 
+int				get_size(t_piece *head)
+{
+	int			count;
+	t_piece		*current;
+
+	count = 0;
+	current = head;
+	while (current != NULL)
+	{
+		current = current->next;
+		count++;
+	}
+	return (ft_sqrt(count * 4));
+}
