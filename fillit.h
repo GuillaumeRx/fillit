@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 21:43:42 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 22:42:28 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int					check_error(int fd, t_piece **pieces, int max_piece);
 int					check_block_number(char board[5][5]);
 int					check_positions(int i, int j, char board[5][5]);
 int					valid_or_invalid(char *line);
+int					validate_empty_line(char *line);
 int					v_or_invalid_piece(char board[5][5]);
 int					fd_other_block(char board[5][5], int i, int j,
 t_block **cur);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_or_invalid.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 15:37:12 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 17:40:04 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/18 22:44:57 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,11 @@ int	valid_or_invalid(char *line)
 			return (0);
 		return (1);
 	}
+	return (0);
+}
+
+int	validate_empty_line(char *line)
+{
 	if (ft_strlen(line) == 0)
 	{
 		if (line[0] != '\0')
