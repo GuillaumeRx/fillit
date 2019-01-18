@@ -6,23 +6,29 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:52:30 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 19:28:54 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 20:04:13 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		piece_is_placable(t_block *block, char **board, int x, int y, int size)
+int		piece_is_placable(t_block *block, char **board, char pos[2], int size)
 {
-	x += block->x;
-	y += block->y;
+	int x;
+	int y;
+	int	pos_next[2];
+
+	x = pos[0] + block->x;
+	y = pos[1] + block->y;
 	if (y >= size || x >= size)
 		return (0);
 	if (board[y][x] == '.')
 	{
 		if(block->next == NULL)
 			return (1);
-		return (piece_is_placable(block->next, board, x, y, size));
+		pos_next[0] = x;
+		pos_next[1] = y;
+		return (piece_is_placable(block->next, board, pos_next, size));
 	}
 	else
 		return (0);
@@ -30,30 +36,29 @@ int		piece_is_placable(t_block *block, char **board, int x, int y, int size)
 
 int				backtrack(t_piece *actual, char **board, int size, char letter)
 {
-	int		x;
-	int		y;
+	int		pos[2];
 
-	x = 0;
-	y = 0;
+	pos[0] = 0;
+	pos[1] = 0;
 	letter++;
-	while (y < size)
+	while (pos[1] < size)
 	{
-		while (x < size)
+		while (pos[0] < size)
 		{
-			if (piece_is_placable(actual->pos, board, x, y, size))
+			if (piece_is_placable(actual->pos, board, pos, size))
 			{
-					write_piece(actual->pos, board, x, y, letter);
+					write_piece(actual->pos, board, pos, letter);
 					if (actual->next == NULL)
 						return (1);
 					else if (backtrack(actual->next, board, size, letter))
 						return (1);
 					else
-						delete_piece(actual->pos, board, x, y);
+						delete_piece(actual->pos, board, pos);
 			}
-			x++;
+			pos[0]++;
 		}
-		x = 0;
-		y++;
+		pos[0] = 0;
+		pos[1]++;
 	}
 	return (0);
 }

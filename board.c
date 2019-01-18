@@ -6,19 +6,25 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 19:05:53 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 20:05:11 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	write_piece(t_block *block,char **board, int x, int y, char letter)
+void		write_piece(t_block *block,char **board, int pos[2], char letter)
 {
-	x = x + block->x;
-	y = y + block->y;
+	int pos_next[2];
+	int x;
+	int y;
+
+	x = pos[0] + block->x;
+	y = pos[1] + block->y;
 	board[y][x] = letter;
+	pos_next[0] = x;
+	pos_next[1] = y;
 	if (block->next != NULL)
-		write_piece(block->next, board, x, y, letter);
+		write_piece(block->next, board, pos_next, letter);
 }
 
 void		delete_piece(t_block *block,char **board, int x, int y)
@@ -71,7 +77,7 @@ void		display_board(char **board)
 	}
 }
 
-void	free_board(char **board)
+void		free_board(char **board)
 {
 	int i;
 
