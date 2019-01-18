@@ -6,13 +6,11 @@
 /*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 15:37:12 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/14 16:46:55 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/18 17:40:04 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-/*verifier le nombre de # dans un tableau*/
 
 int	check_block_number(char board[5][5])
 {
@@ -22,13 +20,11 @@ int	check_block_number(char board[5][5])
 
 	i = 0;
 	ret = 0;
-	while (i < 5)
+	while (i < 4)
 	{
 		j = 0;
-		while (j < 5)
+		while (j < 4)
 		{
-			while (board[i][j] == '.')
-				j++;
 			if (board[i][j] == '#')
 				ret++;
 			j++;
@@ -39,8 +35,6 @@ int	check_block_number(char board[5][5])
 		return (0);
 	return (1);
 }
-
-/*vertifier le nombre de contacts entre les carres d'un tetromino*/
 
 int	check_positions(int i, int j, char board[5][5])
 {
@@ -58,16 +52,14 @@ int	check_positions(int i, int j, char board[5][5])
 	return (ret);
 }
 
-/*verifier si la ligne contient les caracteres valides*/
-
 int	valid_or_invalid(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (ft_strlen(line) == 4)
 	{
-		while (i < 4 && (line[i] == '.' ||  line[i] == '#'))
+		while (i < 4 && (line[i] == '.' || line[i] == '#'))
 			i++;
 		if (i != 4)
 			return (0);
@@ -75,35 +67,30 @@ int	valid_or_invalid(char *line)
 			return (0);
 		return (1);
 	}
-	else if (ft_strlen(line) == 1)
+	if (ft_strlen(line) == 0)
 	{
-		if (line[0] != '\n')
+		if (line[0] != '\0')
 			return (0);
 		return (1);
 	}
 	return (0);
 }
 
-/*verifier que l'agencement des caracteres lus correcpond bien a celui d'un
- * tetromino valide*/
-
 int	v_or_invalid_piece(char board[5][5])
 {
-	int		i;
-	int		j;
-	int		ret;
+	int	i;
+	int	j;
+	int	ret;
 
 	if (!(check_block_number(board)))
 		return (0);
 	i = 0;
 	ret = 0;
-	while (i < 5)
+	while (i < 4)
 	{
 		j = 0;
-		while (j < 5)
+		while (j < 4)
 		{
-			while (board[i][j] == '.')
-				j++;
 			if (board[i][j] == '#')
 				ret = ret + check_positions(i, j, board);
 			j++;

@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:11:50 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/14 17:35:11 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/14 18:03:39 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,7 @@ int	main(int ac, char **av)
 			ft_putendl("error");
 			return(0);
 		}
-		cur = pieces;
-		while (cur)
-		{
-			convert_board_into_block_list(&cur);
-			cur = cur->next;
-		}
-		pieces = cur;
+		convert_board_into_block_list(&pieces);
 	}
 		/* traiter les info et checker les erreurs */
 	return (0);
