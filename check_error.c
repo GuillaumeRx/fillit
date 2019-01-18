@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 22:43:09 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 23:31:19 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	read_pieces(int fd, char board[5][5])
 		if ((ret = get_next_line(fd, &line)) <= 0)
 			return (0);
 		if (!(valid_or_invalid(line)))
+		{
+			free(line);
 			return (0);
+		}
 		j = 0;
 		while (j < 4)
 		{
@@ -48,11 +51,17 @@ int	do_tetrimino(t_piece **cur, int fd)
 		return (0);
 	(*cur)->pos = NULL;
 	if ((ret = read_pieces(fd, (*cur)->board)) <= 0)
+	{
+		free(*cur);
 		return (0);
+	}
 	if (ret == 2)
 		return (2);
 	if (!(v_or_invalid_piece((*cur)->board)))
+	{
+		free(*cur);
 		return (0);
+	}
 	(*cur)->next = NULL;
 	return (1);
 }
@@ -67,7 +76,10 @@ int	check_empty_line(int fd)
 	else if (ret < 0)
 		return (0);
 	if (!(validate_empty_line(line)))
+	{
+		free(line);
 		return (0);
+	}
 	if (ret == 1)
 		free(line);
 	return (1);
