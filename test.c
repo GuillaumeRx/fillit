@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 19:45:25 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/12 03:09:52 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/14 16:35:30 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ t_block 	*create_block_list(int i)
 	else if (i == 3)
 	{
 		printf("last block created\n");
-		(*actual).x = -1;
-		(*actual).y = 0;
+		(*actual).x = 0;
+		(*actual).y = 1;
 		printf("actual y :%d\n", actual->y);
 		actual->next = NULL;
 	}
@@ -67,7 +67,7 @@ void	lstadd(t_piece **alst)
 	new->next = *alst;
 	*alst = new;
 	}
-	else 
+	else
 	{
 		new->next = NULL;
 		*alst = new;
@@ -83,7 +83,7 @@ void	create_piece_list(t_piece **list)
 	{
 		lstadd(list);
 		printf("Tetrimino number %d created\n", i);
-		i++;	
+		i++;
 	}
 }
 
