@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:11:50 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/14 18:03:39 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/18 18:48:36 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,16 @@
 int	main(int ac, char **av)
 {
 	t_piece	*pieces;
-	t_piece *cur;
-	int	fd;
+	int fd;
 
 	if (ac != 2)
 		ft_putendl(USAGE);
 	else
 	{
-		if ((fd = open(av[1], O_RDONLY)) < 0)
-			return (0);
-		if (check_error(fd, *pieces) == 0)
-		{
+		fd = open(av[1], O_RDONLY);
+		if(!(fillit(fd, &pieces)))
 			ft_putendl("error");
-			return(0);
-		}
-		convert_board_into_block_list(&pieces);
+		close(fd);
 	}
-		/* traiter les info et checker les erreurs */
 	return (0);
 }

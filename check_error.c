@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 17:38:17 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/18 19:41:01 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	read_pieces(int fd, char board[5][5])
 	{
 		if ((ret = get_next_line(fd, &line)) < 0)
 			return (0);
+		if (ret == 0)
+			return (2);
 		if (!(valid_or_invalid(line)))
 			return (0);
 		j = 0;
@@ -43,10 +45,15 @@ int	read_pieces(int fd, char board[5][5])
 
 int	do_tetrimino(t_piece **cur, int fd)
 {
+	int ret;
+
 	if (!((*cur) = (t_piece *)malloc(sizeof(t_piece))))
 		return (0);
-	if (!(read_pieces(fd, (*cur)->board)))
+	(*cur)->pos = NULL;
+	if ((ret = read_pieces(fd, (*cur)->board)) <= 0)
 		return (0);
+	if (ret == 2)
+		return (2);
 	if (!(v_or_invalid_piece((*cur)->board)))
 		return (0);
 	(*cur)->next = NULL;

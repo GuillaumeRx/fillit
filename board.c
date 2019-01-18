@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/12 02:56:48 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/18 19:05:53 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ void		display_board(char **board)
 		ft_putendl(board[i]);
 		i++;
 	}
+}
+
+void	free_board(char **board)
+{
+	int i;
+
+	i = 0;
+	while (board[i] != 0)
+	{
+		free(board[i]);
+		board[i] = NULL;
+		i++;
+	}
+	free(board);
 }

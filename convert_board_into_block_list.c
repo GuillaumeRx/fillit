@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert_board_into_block_list.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cduverge <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 17:31:03 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 17:42:43 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/18 18:31:45 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	convert_board_into_block_list(t_piece **pieces)
 	t_block	*cur;
 
 	cur = (*pieces)->pos;
-	if (!(search_first_bloc	k((*pieces)->board, &cur)))
+	if (!(search_first_block((*pieces)->board, &cur)))
 		return (0);
 	(*pieces)->pos = cur;
 	if ((*pieces)->next != NULL)

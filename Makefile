@@ -6,7 +6,7 @@
 #    By: guroux <guroux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/02 12:36:35 by guroux            #+#    #+#              #
-#    Updated: 2019/01/10 21:02:50 by guroux           ###   ########.fr        #
+#    Updated: 2019/01/18 18:45:08 by guroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,15 @@ NAME = fillit
 
 .PHONY: all libft clean fclean re
 
-SRC  =	./test.c 		\
+SRC  =	./main.c		\
 		./board.c 		\
 		./fillit.c		\
 		./others.c		\
+		./list.c		\
+		./check_error.c \
+		./valid_or_invalid.c	\
+		./convert_board_into_block_list.c	\
+		./get_next_line.c					\
 
 OBJECT = $(SRC:.c=.o)
 
