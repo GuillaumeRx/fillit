@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 22:42:28 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/21 18:05:32 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_block{
 	struct s_block	*next;
 }					t_block;
 
+void				fill_out_board(char board[5][5], int i, char *line);
 int					read_pieces(int fd, char board[5][5]);
 int					do_tetrimino(t_piece **cur, int fd);
 int					check_empty_line(int fd);

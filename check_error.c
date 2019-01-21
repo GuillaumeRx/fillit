@@ -6,17 +6,29 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/21 17:47:40 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/21 18:05:28 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	read_pieces(int fd, char board[5][5])
+void	fill_out_board(char board[5][5], int i, char *line)
+{
+	int	j;
+
+	j = 0;
+	while (j < 4)
+	{
+		board[i][j] = line[j];
+		j++;
+	}
+	board[i][j] = '\0';
+}
+
+int		read_pieces(int fd, char board[5][5])
 {
 	int		ret;
 	int		i;
-	int		j;
 	char	*line;
 
 	i = 0;
@@ -29,13 +41,7 @@ int	read_pieces(int fd, char board[5][5])
 			free(line);
 			return (0);
 		}
-		j = 0;
-		while (j < 4)
-		{
-			board[i][j] = line[j];
-			j++;
-		}
-		board[i][j] = '\0';
+		fill_out_board(board, i, line);
 		i++;
 		if (ret == 1)
 			free(line);
@@ -43,9 +49,9 @@ int	read_pieces(int fd, char board[5][5])
 	return (1);
 }
 
-int	do_tetrimino(t_piece **cur, int fd)
+int		do_tetrimino(t_piece **cur, int fd)
 {
-	int ret;
+	int	ret;
 
 	if (!((*cur) = (t_piece *)malloc(sizeof(t_piece))))
 		return (0);
@@ -64,7 +70,7 @@ int	do_tetrimino(t_piece **cur, int fd)
 	return (1);
 }
 
-int	check_empty_line(int fd)
+int		check_empty_line(int fd)
 {
 	char	*line;
 	int		ret;
@@ -83,7 +89,7 @@ int	check_empty_line(int fd)
 	return (1);
 }
 
-int	check_error(int fd, t_piece **pieces, int max_piece)
+int		check_error(int fd, t_piece **pieces, int max_piece)
 {
 	t_piece	*cur;
 	int		ret;
