@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 23:31:19 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/21 14:06:43 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ int	do_tetrimino(t_piece **cur, int fd)
 	if (!((*cur) = (t_piece *)malloc(sizeof(t_piece))))
 		return (0);
 	(*cur)->pos = NULL;
-	if ((ret = read_pieces(fd, (*cur)->board)) <= 0)
+	if (!(ret = read_pieces(fd, (*cur)->board)))
 	{
 		free(*cur);
 		return (0);
 	}
-	if (ret == 2)
-		return (2);
 	if (!(v_or_invalid_piece((*cur)->board)))
 	{
 		free(*cur);
