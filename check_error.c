@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:26:04 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/21 14:06:43 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:47:40 by cduverge         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	check_empty_line(int fd)
 int	check_error(int fd, t_piece **pieces, int max_piece)
 {
 	t_piece	*cur;
-	t_piece	*tmp;
 	int		ret;
 
 	cur = *pieces;
@@ -97,9 +96,7 @@ int	check_error(int fd, t_piece **pieces, int max_piece)
 		return (0);
 	if (ret != 2 && max_piece <= 26)
 	{
-		ret = check_error(fd, &(tmp), max_piece);
-		if (ret)
-			cur->next = tmp;
+		ret = check_error(fd, &(cur->next), max_piece);
 		*pieces = cur;
 		return (ret);
 	}
