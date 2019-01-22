@@ -6,7 +6,7 @@
 #    By: guroux <guroux@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/02 12:36:35 by guroux            #+#    #+#              #
-#    Updated: 2019/01/22 14:47:13 by guroux           ###   ########.fr        #
+#    Updated: 2019/01/22 15:36:01 by guroux           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ LIB = libft
 CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
-
 GREEN = \033[0;32m
 WHITE = \033[1;37m
 BLUE = \033[1;34m

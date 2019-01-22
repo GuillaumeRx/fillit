@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 15:37:12 by cduverge          #+#    #+#             */
-/*   Updated: 2019/01/18 22:44:57 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/22 15:34:11 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ int	check_positions(int i, int j, char board[5][5])
 	int	ret;
 
 	ret = 0;
-	if (board[i][j - 1] == '#')
+	if (board[i][j - 1] && board[i][j - 1] == '#')
 		ret++;
-	if (board[i - 1][j] == '#')
+	if (board[i - 1][j] && board[i - 1][j] == '#')
 		ret++;
-	if (board[i + 1][j] == '#')
+	if (board[i + 1][j] && board[i + 1][j] == '#')
 		ret++;
-	if (board[i][j + 1] == '#')
+	if (board[i][j + 1] && board[i][j + 1] == '#')
 		ret++;
 	return (ret);
 }
