@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 16:52:30 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 21:33:21 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/21 21:30:26 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,14 @@ int		fillit(int fd, t_piece **start)
 		return (0);
 	}
 	size = get_size(*start);
-	board = init_board(size);
+	if(!(board = init_board(size)))
+		return (0);
 	while (!(backtrack(*start, board, size, 64)))
 	{
 		free_board(board);
 		size++;
-		board = init_board(size);
+		if(!(board = init_board(size)))
+			return (0);
 	}
 	display_board(board);
 	free_piece(start);

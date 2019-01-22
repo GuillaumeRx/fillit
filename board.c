@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/09 20:10:10 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/18 21:26:02 by guroux           ###   ########.fr       */
+/*   Updated: 2019/01/22 14:44:52 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ char		**init_board(int size)
 	int		j;
 
 	i = 0;
-	if (!(board = (char **)malloc(sizeof(char *) * size + 1)))
+	if (!(board = (char **)malloc(sizeof(char *) * (size + 1))))
 		return (NULL);
 	while (i < size)
 	{
-		if (!(board[i] = (char *)malloc(sizeof(char) * size + 1)))
+		if (!(board[i] = (char *)malloc(sizeof(char) * (size + 1))))
 		{
 			free(board);
 			return (NULL);

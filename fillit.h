@@ -6,7 +6,7 @@
 /*   By: guroux <guroux@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 12:38:28 by guroux            #+#    #+#             */
-/*   Updated: 2019/01/21 18:05:32 by cduverge         ###   ########.fr       */
+/*   Updated: 2019/01/21 21:27:16 by guroux           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define USAGE "usage : ./fillit file"
 
 # include <fcntl.h>
-# include <stdio.h>
 # include "get_next_line.h"
 
 typedef struct		s_piece {
